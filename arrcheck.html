@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="main" class="grid-container">click</section>
+    <style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);; /* 4 columns */
+    gap: 20px; /* space between items */
+    padding: 50px;
+  }
+  .grid-item {
+    aspect-ratio: 1 / 1; /* makes it a square */
+    background-color:darkkhaki;
+    text-align: center;
+    /*line-height: 1.2;*/
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+    <script>
+        let arr1=[
+    {id:1,name:"person1",description:"person1",type:"person",image:'<img style="width:150px; height:auto;"" src="https://images.unsplash.com/photo-1611001560674-9ed5a2b156db?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwdmlld3xlbnwwfHwwfHx8MA%3D%3D">'},
+    {id:2,name:"nof1",description:"nof1",type:"nof"},
+    {id:3,name:"person2",description:"person2",type:"person"},
+    {id:4,name:"person3",description:"person3",type:"person"},
+    {id:5,name:"nof2",description:"nof2",type:"nof"},
+    {id:6,name:"nof3",description:"nof3",type:"nof"},
+    {id:7,name:"nof4",description:"nof4",type:"nof"},
+    {id:8,name:"person4",description:"person4",type:"person"}
+];
+function FullArr(arr){
+        let sortedArr = arr.slice().sort((a, b) => {
+        if (a.type === b.type) return 0;
+        if (a.type === "person") return -1;
+        if (b.type === "person") return 1;
+        return 0;
+        /*let sortedArr = arr.sort((a, b) => {
+        if (a.type < b.type) return -1;
+        if (a.type > b.type) return 1;
+        return 0;*/
+    });
+    let myArr=sortedArr.map(
+        (val) => `<span class="grid-item">${val.name}:${val.type}</span>`
+    ).join(' ')
+    myArr+=`<section class="grid-item">${arr1[0].image}<br><span>${arr1[0].type}</span></section>`;
+    return(document.getElementById("main").innerHTML=myArr);
+        }
+    FullArr(arr1);
+    </script>
+</body>
+</html>
